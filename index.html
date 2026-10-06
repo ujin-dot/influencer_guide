@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>월화갈비 인플루언서 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4f0;
+    --surface: #ffffff;
+    --ink: #22201e;
+    --muted: #6f6a64;
+    --line: #e4ded6;
+    --brand: #8c2a1c;
+    --brand-ink: #ffffff;
+    --brand-soft: #f6e9e5;
+    --ok: #2f7a4b;
+    --warn-bg: #fdecea;
+    --warn-line: #e3a59c;
+    --warn-ink: #9b1c10;
+    --link: #1f5fa8;
+    --radius: 12px;
+    --font: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.6 var(--font);
+    -webkit-text-size-adjust: 100%;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  [hidden] { display: none !important; }
+  button, input, textarea { font: inherit; color: inherit; }
+  a { color: inherit; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Header */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .topbar-inner {
+    max-width: 880px; margin: 0 auto;
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+  }
+  .brand { flex: 1; min-width: 0; text-decoration: none; }
+  .brand small { display: block; font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .brand strong { display: block; font-size: 16px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .badge-viewonly {
+    font-size: 12px; padding: 2px 8px; border-radius: 999px;
+    background: var(--brand-soft); color: var(--brand); white-space: nowrap;
+  }
+  .lang-btn {
+    flex: none;
+    border: 1px solid var(--line); background: var(--surface);
+    border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+  }
+  .lang-btn:hover { border-color: var(--brand); }
+
+  main { max-width: 880px; margin: 0 auto; padding: 16px 16px 48px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: 1px solid var(--line); background: var(--surface);
+    border-radius: 10px; padding: 9px 14px; cursor: pointer;
+    font-weight: 500; text-decoration: none; min-height: 40px;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn-primary { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+  .btn-primary:hover { filter: brightness(1.1); border-color: var(--brand); }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+  .toolbar .spacer { flex: 1; }
+
+  /* Notice banner */
+  .banner {
+    background: var(--warn-bg); color: var(--warn-ink); border: 1px solid var(--warn-line);
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 16px; font-size: 14px;
+  }
+
+  /* List */
+  .page-title { font-size: 20px; margin: 4px 0 4px; }
+  .page-desc { color: var(--muted); margin: 0 0 16px; font-size: 14px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .card-main { display: block; padding: 16px; text-decoration: none; flex: 1; }
+  .card-main:hover { background: #fcfaf8; }
+  .card-no { font-size: 12px; color: var(--brand); font-weight: 700; letter-spacing: .04em; }
+  .card-name { font-size: 17px; font-weight: 700; margin: 2px 0 10px; }
+  .card-status { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+  .pill { border-radius: 999px; padding: 2px 10px; background: #f1ede8; color: var(--muted); }
+  .pill.done { background: #e5f2ea; color: var(--ok); }
+  .pill.part { background: #fbf1dc; color: #8a5a00; }
+  .card-actions { display: flex; border-top: 1px solid var(--line); }
+  .card-actions .btn { flex: 1; border: 0; border-radius: 0; }
+  .card-actions .btn + .btn { border-left: 1px solid var(--line); }
+
+  .switch-row {
+    margin-top: 24px; display: flex; gap: 12px; align-items: center; justify-content: space-between;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px;
+  }
+  .switch-row p { margin: 0; font-size: 13px; color: var(--muted); }
+  .switch-row strong { display: block; font-size: 14px; color: var(--ink); }
+  .switch { position: relative; flex: none; width: 48px; height: 28px; }
+  .switch input { opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; position: absolute; inset: 0; z-index: 1; }
+  .switch span { position: absolute; inset: 0; background: #d3ccc4; border-radius: 999px; transition: background .15s; }
+  .switch span::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px;
+    background: #fff; border-radius: 50%; transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  }
+  .switch input:checked + span { background: var(--brand); }
+  .switch input:checked + span::after { transform: translateX(20px); }
+  .switch input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  /* Editor */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
+  .tab {
+    border: 0; background: none; padding: 10px 14px; cursor: pointer; font-weight: 500; color: var(--muted);
+    border-bottom: 3px solid transparent; margin-bottom: -1px;
+  }
+  .tab[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+  .form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .field { margin-bottom: 22px; }
+  .field:last-child { margin-bottom: 0; }
+  .field > label, .field-label { display: block; font-weight: 700; margin-bottom: 4px; }
+  .field .hint { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 6px; }
+  .field input[type="text"], .field textarea {
+    display: block; width: 100%; max-width: 100%;
+    border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: #fff;
+  }
+  .field textarea { min-height: 110px; resize: vertical; line-height: 1.6; }
+  .field input:focus, .field textarea:focus { outline: 2px solid var(--brand); outline-offset: -1px; border-color: var(--brand); }
+  .field.danger > label, .field.danger .field-label { color: var(--warn-ink); }
+
+  .scene-edit { border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-bottom: 8px; background: #fcfaf8; }
+  .scene-row { display: flex; gap: 8px; align-items: center; }
+  .scene-num {
+    flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--brand-soft); color: var(--brand);
+    font-size: 12px; font-weight: 700; display: grid; place-items: center;
+  }
+  .scene-row input[type="text"] { flex: 1; min-width: 0; }
+  .icon-btn {
+    flex: none; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
+    cursor: pointer; color: var(--muted);
+  }
+  .icon-btn:hover { color: var(--warn-ink); border-color: var(--warn-line); }
+  .thumbs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; padding-left: 32px; }
+  .thumb { position: relative; width: 64px; height: 64px; border-radius: 8px; overflow: hidden; background: #eee; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb .missing { display: grid; place-items: center; height: 100%; font-size: 11px; color: var(--muted); text-align: center; }
+  .thumb button {
+    position: absolute; top: 2px; right: 2px; width: 22px; height: 22px; border-radius: 50%;
+    border: 0; background: rgba(0,0,0,.6); color: #fff; font-size: 12px; line-height: 1; cursor: pointer;
+  }
+  .add-photo {
+    width: 64px; height: 64px; border: 1px dashed var(--muted); border-radius: 8px;
+    display: grid; place-items: center; font-size: 12px; color: var(--muted); cursor: pointer; text-align: center; background: #fff;
+  }
+  .add-photo:hover, .add-photo:focus-within { border-color: var(--brand); color: var(--brand); }
+  .btn-add-scene { width: 100%; border-style: dashed; }
+
+  .sticky-save {
+    position: sticky; bottom: 0; margin-top: 16px; padding: 12px 0 calc(12px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to bottom, rgba(247,244,240,0), var(--bg) 30%);
+    display: flex; gap: 8px; justify-content: flex-end;
+  }
+  .dirty-note { font-size: 13px; color: #8a5a00; align-self: center; margin-right: auto; }
+
+  /* Guide (view + PDF) */
+  .guide { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; }
+  .guide-head { border-bottom: 2px solid var(--brand); padding-bottom: 12px; margin-bottom: 16px; }
+  .guide-kicker { font-size: 12px; color: var(--brand); font-weight: 700; letter-spacing: .04em; margin: 0; }
+  .guide-title { font-size: 22px; margin: 2px 0 0; line-height: 1.35; }
+  .guide-section { margin-bottom: 18px; }
+  .guide-section:last-child { margin-bottom: 0; }
+  .guide-section h2 { font-size: 15px; margin: 0 0 6px; color: var(--brand); }
+  .guide-section p { margin: 0; white-space: pre-wrap; }
+  .guide-section ul { margin: 0; padding-left: 20px; }
+  .guide-section li { margin: 2px 0; break-inside: avoid; page-break-inside: avoid; }
+  .guide-empty { color: var(--muted); font-style: italic; }
+  .guide-section.danger { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 10px; padding: 12px 14px; }
+  .guide-section.danger h2 { color: var(--warn-ink); }
+  .guide-section.danger h2::before { content: "⚠ "; }
+  .guide-nocontent {
+    background: #fbf1dc; color: #6b4600; border-radius: 10px; padding: 10px 12px; margin-bottom: 16px; font-size: 14px;
+  }
+  .scene-list li { margin: 4px 0; }
+  .ref-btn {
+    display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; vertical-align: 1px;
+    border: 1px solid var(--line); background: var(--brand-soft); color: var(--brand);
+    border-radius: 999px; padding: 1px 10px; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+  }
+  .ref-btn:hover { border-color: var(--brand); }
+  .ref-links { margin-top: 8px; font-size: 14px; }
+  .ref-links ul { list-style: none; padding-left: 0; }
+  .ref-links li::before { content: "🔗 "; }
+  .ref-links a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+  .ref-links .url { color: var(--muted); font-size: 12px; margin-left: 4px; }
+
+  /* PDF render target: fixed A4-like width, independent of screen size */
+  .pdf-sheet { width: 720px; background: #fff; color: #22201e; padding: 8px 4px; font: 14px/1.65 var(--font); }
+  .pdf-sheet .guide { border: 0; padding: 0; }
+  .pdf-photos { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+  .pdf-photos img { height: 150px; max-width: 220px; object-fit: cover; border-radius: 6px; border: 1px solid #e4ded6; }
+  .pdf-foot { margin-top: 24px; font-size: 11px; color: #8a847d; border-top: 1px solid #e4ded6; padding-top: 8px; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 60; background: rgba(20,18,16,.96); color: #fff;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .lb-top { position: absolute; top: calc(10px + env(safe-area-inset-top, 0px)); left: 16px; right: 16px; display: flex; align-items: center; }
+  .lb-count { flex: 1; font-size: 14px; opacity: .85; }
+  .lb-close, .lb-nav {
+    border: 0; background: rgba(255,255,255,.15); color: #fff; border-radius: 50%; cursor: pointer;
+    width: 44px; height: 44px; font-size: 20px; line-height: 1;
+  }
+  .lb-close:hover, .lb-nav:hover { background: rgba(255,255,255,.3); }
+  .lb-img { max-width: 100%; max-height: calc(100vh - 160px); object-fit: contain; border-radius: 6px; }
+  .lb-caption { margin: 12px 0 0; text-align: center; max-width: 640px; font-size: 15px; }
+  .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); }
+  .lb-prev { left: 12px; }
+  .lb-next { right: 12px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    background: #22201e; color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 14px;
+    z-index: 70; max-width: calc(100% - 32px); text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+
+  /* Fallback PDF via browser "Save as PDF" */
+  #print-root { display: none; }
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    body.printing > *:not(#print-root) { display: none !important; }
+    body.printing #print-root { display: block; }
+    body.printing { background: #fff; }
+    #print-root .pdf-sheet { width: auto; }
+  }
+
+  @media (max-width: 480px) {
+    main { padding-top: 12px; }
+    .guide { padding: 16px 14px; }
+    .guide-title { font-size: 20px; }
+    .toolbar .btn { flex: 1 1 auto; }
+    .thumbs { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#/">
+      <small data-i18n="brandSub"></small>
+      <strong data-i18n="brandTitle"></strong>
+    </a>
+    <span class="badge-viewonly" id="viewonly-badge" data-i18n="viewOnlyBadge" hidden></span>
+    <button type="button" class="lang-btn" id="lang-btn" aria-label="Language"></button>
+  </div>
+</header>
+<main id="app"></main>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" hidden>
+  <div class="lb-top">
+    <span class="lb-count" id="lb-count"></span>
+    <button type="button" class="lb-close" id="lb-close">✕</button>
+  </div>
+  <img class="lb-img" id="lb-img" alt="">
+  <p class="lb-caption" id="lb-caption"></p>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev">‹</button>
+  <button type="button" class="lb-nav lb-next" id="lb-next">›</button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div id="print-root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var STORE_KEY = 'wolhwa-influencer-guide-v1';
+  var LANG_KEY = 'wolhwa-influencer-guide-lang';
+  var VIEWONLY_KEY = 'wolhwa-influencer-guide-viewonly';
+  var PHOTO_DB = 'wolhwa-influencer-guide-photos';
+  var BRANCH_IDS = ['1', '2', '3', '4'];
+  var LANGS = ['ko', 'en'];
+  // Per-language text fields. "scenes" is a shared item list (text per language + photos).
+  var TEXT_FIELDS = ['name', 'address', 'menu', 'links', 'rules', 'banned'];
+  var LIST_FIELDS = ['menu', 'rules', 'banned'];
+  // Guide sections in display order (below the branch name).
+  var SECTIONS = ['address', 'menu', 'scenes', 'links', 'rules', 'banned'];
+  var STATUS_FIELDS = ['name'].concat(SECTIONS);
+
+  var EN_NAMES = {
+    '1': 'Wolhwa Galbi MAAX',
+    '2': 'Wolhwa Galbi Greenhills',
+    '3': 'Wolhwa Galbi Fairview Terraces',
+    '4': 'Wolhwa Galbi Tomas Morato'
+  };
+
+  var I18N = {
+    ko: {
+      langSwitch: 'English',
+      brandSub: '월화갈비 필리핀',
+      brandTitle: '인플루언서 가이드',
+      viewOnlyBadge: '보기 전용',
+      listTitle: '지점 목록',
+      listDesc: '지점을 누르면 인플루언서용 가이드를 볼 수 있습니다.',
+      branchNo: '{n}호점',
+      view: '보기',
+      edit: '편집',
+      statusNone: '–',
+      statusDone: '✓',
+      viewOnlyTitle: '보기 전용 모드',
+      viewOnlyDesc: '편집 버튼을 숨겨 인플루언서에게 화면을 보여줄 때 사용합니다.',
+      back: '← 목록',
+      backToView: '보기로 이동',
+      save: '저장',
+      saved: '저장되었습니다',
+      unsaved: '저장하지 않은 변경 사항이 있습니다',
+      confirmLeave: '저장하지 않은 변경 사항이 있습니다. 저장하지 않고 나가시겠습니까?',
+      editTitle: '가이드 편집',
+      tabKo: '한국어 내용',
+      tabEn: '영어 내용',
+      perLine: '한 줄에 한 항목',
+      f_name: '지점명',
+      f_address: '주소',
+      f_menu: '메뉴',
+      f_scenes: '필수 촬영 포함 장면',
+      f_links: '레퍼런스 링크',
+      f_rules: '게시 규칙',
+      f_banned: '금지 사항',
+      scenesHint: '장면마다 레퍼런스 사진 첨부 가능',
+      scenePh: '촬영 장면 설명',
+      addScene: '+ 장면 추가',
+      addPhoto: '＋ 사진',
+      removeScene: '장면 삭제',
+      removePhoto: '사진 삭제',
+      confirmRemoveScene: '이 장면을 삭제할까요? 한국어·영어 내용과 첨부 사진이 함께 삭제됩니다.',
+      photoMissing: '사진 없음',
+      photoProcessing: '사진을 처리하는 중…',
+      photoError: '사진을 저장할 수 없습니다. 브라우저 저장 공간을 확인해 주세요.',
+      photoReadError: '이미지를 읽을 수 없습니다: {name}',
+      photoUnavailable: '이 브라우저에서는 사진 저장 공간을 사용할 수 없어 사진을 첨부하거나 표시할 수 없습니다.',
+      refView: '레퍼런스 보기',
+      linksHint: '한 줄에 하나 · 예: 메뉴판 | https://...',
+      close: '닫기',
+      prev: '이전',
+      next: '다음',
+      notEntered: '아직 입력되지 않았습니다',
+      noContent: '내용 없음 — 한국어 가이드가 아직 입력되지 않았습니다.',
+      pdfShare: 'PDF로 공유',
+      pdfMaking: 'PDF 만드는 중…',
+      pdfSaved: 'PDF 파일이 저장되었습니다',
+      pdfFallback: '인쇄 창에서 대상을 "PDF로 저장"으로 선택해 저장하세요',
+      storageError: '브라우저 저장 공간을 사용할 수 없습니다. 이 창을 닫으면 입력한 내용이 사라질 수 있습니다.',
+      saveError: '저장에 실패했습니다. 브라우저 저장 공간(용량·개인정보 보호 모드)을 확인해 주세요.',
+      notFound: '해당 지점을 찾을 수 없습니다.',
+      pdfFoot: '월화갈비 필리핀 인플루언서 가이드'
+    },
+    en: {
+      langSwitch: '한국어',
+      brandSub: 'Wolhwa Galbi Philippines',
+      brandTitle: 'Influencer Guide',
+      viewOnlyBadge: 'View only',
+      listTitle: 'Branches',
+      listDesc: 'Tap a branch to open its influencer guide.',
+      branchNo: 'Branch {n}',
+      view: 'View',
+      edit: 'Edit',
+      statusNone: '–',
+      statusDone: '✓',
+      viewOnlyTitle: 'View-only mode',
+      viewOnlyDesc: 'Hides edit buttons when showing the screen to influencers.',
+      back: '← Branches',
+      backToView: 'Go to view',
+      save: 'Save',
+      saved: 'Saved',
+      unsaved: 'You have unsaved changes',
+      confirmLeave: 'You have unsaved changes. Leave without saving?',
+      editTitle: 'Edit guide',
+      tabKo: 'Korean content',
+      tabEn: 'English content',
+      perLine: 'one item per line',
+      f_name: 'Branch name',
+      f_address: 'Address',
+      f_menu: 'Menu',
+      f_scenes: 'Required shots',
+      f_links: 'Reference links',
+      f_rules: 'Posting rules',
+      f_banned: 'Prohibited',
+      scenesHint: 'reference photos can be attached to each shot',
+      scenePh: 'Describe the shot',
+      addScene: '+ Add shot',
+      addPhoto: '＋ Photo',
+      removeScene: 'Remove shot',
+      removePhoto: 'Remove photo',
+      confirmRemoveScene: 'Remove this shot? Its Korean and English text and attached photos will be removed.',
+      photoMissing: 'No photo',
+      photoProcessing: 'Processing photos…',
+      photoError: 'Could not save the photo. Please check your browser storage.',
+      photoReadError: 'Could not read image: {name}',
+      photoUnavailable: 'Photo storage is unavailable in this browser, so photos cannot be attached or shown.',
+      refView: 'View reference',
+      linksHint: 'one per line · e.g. Menu | https://...',
+      close: 'Close',
+      prev: 'Previous',
+      next: 'Next',
+      notEntered: 'Not entered yet',
+      noContent: 'No content — the English guide has not been entered yet.',
+      pdfShare: 'Share as PDF',
+      pdfMaking: 'Creating PDF…',
+      pdfSaved: 'PDF file saved',
+      pdfFallback: 'In the print dialog, choose "Save as PDF" as the destination',
+      storageError: 'Browser storage is unavailable. Your changes may be lost when this window closes.',
+      saveError: 'Could not save. Please check your browser storage (space or private mode).',
+      notFound: 'Branch not found.',
+      pdfFoot: 'Wolhwa Galbi Philippines — Influencer Guide'
+    }
+  };
+
+  function defaultName(id, lang) {
+    return lang === 'ko' ? '월화갈비 필리핀 ' + id + '호점' : EN_NAMES[id];
+  }
+
+  function newId(prefix) {
+    return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  function emptyLang(id, lang) {
+    var c = {};
+    TEXT_FIELDS.forEach(function (f) { c[f] = ''; });
+    c.name = defaultName(id, lang);
+    return c;
+  }
+
+  function defaultData() {
+    var data = {};
+    BRANCH_IDS.forEach(function (id) {
+      data[id] = { ko: emptyLang(id, 'ko'), en: emptyLang(id, 'en'), scenes: [] };
+    });
+    return data;
+  }
+
+  /* ---------- Storage (never throws) ---------- */
+  var storageOk = true;
+
+  function storageGet(key) {
+    try { return window.localStorage.getItem(key); }
+    catch (e) { storageOk = false; return null; }
+  }
+  function storageSet(key, value) {
+    try { window.localStorage.setItem(key, value); return true; }
+    catch (e) { storageOk = false; return false; }
+  }
+
+  function str(v) { return typeof v === 'string' ? v : ''; }
+
+  function loadData() {
+    var data = defaultData();
+    var raw = storageGet(STORE_KEY);
+    if (!raw) return data;
+    try {
+      var saved = JSON.parse(raw);
+      BRANCH_IDS.forEach(function (id) {
+        var sb = saved && saved[id];
+        if (!sb) return;
+        var b = data[id];
+        LANGS.forEach(function (lang) {
+          var src = sb[lang];
+          if (!src) return;
+          TEXT_FIELDS.forEach(function (f) {
+            if (typeof src[f] === 'string') b[lang][f] = src[f];
+          });
+          // Previous version kept links per section: merge them into the single links field.
+          if (src.links && typeof src.links === 'object') {
+            b[lang].links = ['address', 'menu', 'scenes', 'rules', 'banned']
+              .map(function (s) { return str(src.links[s]).trim(); }).filter(Boolean).join('\n');
+          }
+        });
+        // Old default English name -> new branch name (custom names are kept).
+        if (b.en.name === 'Wolhwa Galbi Philippines Branch ' + id) b.en.name = EN_NAMES[id];
+
+        if (Array.isArray(sb.scenes)) {
+          b.scenes = sb.scenes.filter(Boolean).map(function (s) {
+            return {
+              id: str(s.id) || newId('s'),
+              ko: str(s.ko),
+              en: str(s.en),
+              photos: Array.isArray(s.photos) ? s.photos.filter(function (p) { return typeof p === 'string'; }) : []
+            };
+          });
+        } else {
+          // First version stored scenes as "one line = one item" text per language.
+          var ko = lines(sb.ko && sb.ko.scenes), en = lines(sb.en && sb.en.scenes);
+          for (var i = 0; i < Math.max(ko.length, en.length); i++) {
+            b.scenes.push({ id: newId('s'), ko: ko[i] || '', en: en[i] || '', photos: [] });
+          }
+        }
+      });
+    } catch (e) { /* corrupted data: start from defaults */ }
+    return data;
+  }
+
+  /* ---------- Photo storage (IndexedDB: photos are too large for localStorage) ---------- */
+  var photos = { db: null, ok: true, urls: {} };
+
+  function idbOpen() {
+    return new Promise(function (resolve, reject) {
+      if (!window.indexedDB) { reject(new Error('no indexedDB')); return; }
+      var req = indexedDB.open(PHOTO_DB, 1);
+      // Some browsers/modes never answer; treat that as "unavailable" instead of hanging.
+      var timer = setTimeout(function () { reject(new Error('indexedDB timeout')); }, 5000);
+      req.onupgradeneeded = function () { req.result.createObjectStore('photos'); };
+      req.onsuccess = function () { clearTimeout(timer); resolve(req.result); };
+      req.onerror = function () { clearTimeout(timer); reject(req.error); };
+    });
+  }
+
+  function idbTx(mode, fn) {
+    return new Promise(function (resolve, reject) {
+      var tx = photos.db.transaction('photos', mode);
+      var out = fn(tx.objectStore('photos'));
+      tx.oncomplete = function () { resolve(out); };
+      tx.onerror = tx.onabort = function () { reject(tx.error); };
+    });
+  }
+
+  function referencedPhotoIds() {
+    var ids = {};
+    BRANCH_IDS.forEach(function (id) {
+      state.data[id].scenes.forEach(function (s) { s.photos.forEach(function (p) { ids[p] = true; }); });
+    });
+    return ids;
+  }
+
+  function initPhotos() {
+    return idbOpen().then(function (db) {
+      photos.db = db;
+      var found = [];
+      return idbTx('readonly', function (store) {
+        store.openCursor().onsuccess = function (e) {
+          var cur = e.target.result;
+          if (!cur) return;
+          found.push({ id: String(cur.key), blob: cur.value });
+          cur.continue();
+        };
+      }).then(function () {
+        // Photos left over from edits that were never saved are removed here.
+        var used = referencedPhotoIds();
+        var unused = [];
+        found.forEach(function (p) {
+          if (used[p.id]) photos.urls[p.id] = URL.createObjectURL(p.blob);
+          else unused.push(p.id);
+        });
+        if (unused.length) {
+          idbTx('readwrite', function (store) { unused.forEach(function (k) { store.delete(k); }); }).catch(function () {});
+        }
+        return found.length > 0;
+      });
+    }).catch(function () {
+      photos.ok = false;
+      return true;
+    });
+  }
+
+  function resizeImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var max = 1600;
+        var scale = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.naturalWidth * scale);
+        canvas.height = Math.round(img.naturalHeight * scale);
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function (blob) { blob ? resolve(blob) : reject(new Error('encode')); }, 'image/jpeg', 0.85);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode')); };
+      img.src = url;
+    });
+  }
+
+  function storePhoto(file) {
+    return resizeImage(file).then(function (blob) {
+      var id = newId('p');
+      return idbTx('readwrite', function (store) { store.put(blob, id); }).then(function () {
+        photos.urls[id] = URL.createObjectURL(blob);
+        return id;
+      });
+    });
+  }
+
+  /* ---------- State ---------- */
+  var state = {
+    lang: storageGet(LANG_KEY) === 'en' ? 'en' : 'ko',
+    viewOnly: storageGet(VIEWONLY_KEY) === '1',
+    data: loadData(),
+    draft: null,        // { id, tab, content } while editing
+    dirty: false,
+    currentHash: null,
+    pdfBusy: false
+  };
+
+  function t(key, vars) {
+    var s = I18N[state.lang][key] || key;
+    if (vars) Object.keys(vars).forEach(function (k) { s = s.replace('{' + k + '}', vars[k]); });
+    return s;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function lines(text) {
+    return String(text || '').split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean);
+  }
+
+  function filled(v) { return String(v || '').trim() !== ''; }
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+
+  // "Label | https://..." or just a URL per line. Only http(s) links are kept.
+  function parseLinks(text) {
+    return lines(text).map(function (line) {
+      var bar = line.lastIndexOf('|');
+      var label = bar >= 0 ? line.slice(0, bar).trim() : '';
+      var url = (bar >= 0 ? line.slice(bar + 1) : line).trim();
+      if (!/^https?:\/\//i.test(url)) {
+        if (/^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(url)) url = 'https://' + url;
+        else return null;
+      }
+      return { label: label || url, url: url };
+    }).filter(Boolean);
+  }
+
+  function sectionFilled(b, lang, f) {
+    if (f === 'scenes') return b.scenes.some(function (s) { return filled(s[lang]); });
+    return filled(b[lang][f]);
+  }
+
+  // Branch name is prefilled, so "nothing entered" is judged by the other sections.
+  function langStatus(b, lang) {
+    var count = STATUS_FIELDS.filter(function (f) { return sectionFilled(b, lang, f); }).length;
+    if (!hasBody(b, lang)) return { cls: '', text: t('statusNone') };
+    if (count === STATUS_FIELDS.length) return { cls: 'done', text: t('statusDone') };
+    return { cls: 'part', text: count + '/' + STATUS_FIELDS.length };
+  }
+
+  function hasBody(b, lang) {
+    return SECTIONS.some(function (f) { return sectionFilled(b, lang, f); });
+  }
+
+  /* ---------- Toast ---------- */
+  var toastTimer = null;
+  function toast(msg, ms) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, ms || 2200);
+  }
+
+  /* ---------- Shell ---------- */
+  function renderShell() {
+    document.documentElement.lang = state.lang;
+    document.title = state.lang === 'ko' ? '월화갈비 인플루언서 가이드' : 'Wolhwa Galbi Influencer Guide';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.getElementById('lang-btn').textContent = t('langSwitch');
+    document.getElementById('viewonly-badge').hidden = !state.viewOnly;
+    document.getElementById('lb-close').setAttribute('aria-label', t('close'));
+    document.getElementById('lb-prev').setAttribute('aria-label', t('prev'));
+    document.getElementById('lb-next').setAttribute('aria-label', t('next'));
+  }
+
+  function storageBanner() {
+    return storageOk ? '' : '<div class="banner" role="alert">' + esc(t('storageError')) + '</div>';
+  }
+
+  /* ---------- Guide markup (shared by view screen and PDF) ---------- */
+  function linksHTML(text, pdf) {
+    var links = parseLinks(text);
+    if (!links.length) return '';
+    return '<div class="ref-links"><ul>' +
+      links.map(function (l) {
+        var showUrl = pdf && l.label !== l.url;
+        return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' + esc(l.label) + '</a>' +
+          (showUrl ? '<span class="url">' + esc(l.url) + '</span>' : '') + '</li>';
+      }).join('') + '</ul></div>';
+  }
+
+  function guideHTML(id, lang, pdf) {
+    var L = I18N[lang];
+    var b = state.data[id];
+    var c = b[lang];
+    var notEntered = '<p class="guide-empty">' + esc(L.notEntered) + '</p>';
+
+    function scenesBody() {
+      var items = [];
+      b.scenes.forEach(function (s, i) {
+        if (!filled(s[lang])) return;
+        var shown = s.photos.filter(function (p) { return photos.urls[p]; });
+        var extra = '';
+        if (shown.length && pdf) {
+          extra = '<div class="pdf-photos">' + shown.map(function (p) {
+            return '<img src="' + photos.urls[p] + '" alt="">';
+          }).join('') + '</div>';
+        } else if (shown.length) {
+          extra = '<button type="button" class="ref-btn" data-ref="' + i + '">📷 ' + esc(L.refView) +
+            (shown.length > 1 ? ' (' + shown.length + ')' : '') + '</button>';
+        }
+        items.push('<li>' + esc(s[lang].trim()) + extra + '</li>');
+      });
+      return items.length ? '<ul class="scene-list">' + items.join('') + '</ul>' : notEntered;
+    }
+
+    function section(f) {
+      var body;
+      if (f === 'scenes') body = scenesBody();
+      else if (f === 'links') body = linksHTML(c.links, pdf) || notEntered;
+      else if (!filled(c[f])) body = notEntered;
+      else if (LIST_FIELDS.indexOf(f) >= 0) {
+        body = '<ul>' + lines(c[f]).map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>';
+      } else body = '<p>' + esc(c[f].trim()) + '</p>';
+      return '<section class="guide-section' + (f === 'banned' ? ' danger' : '') + '">' +
+        '<h2>' + esc(L['f_' + f]) + '</h2>' + body + '</section>';
+    }
+
+    return '<article class="guide">' +
+      '<header class="guide-head">' +
+        '<p class="guide-kicker">' + esc(L.brandSub + ' · ' + L.brandTitle) + '</p>' +
+        '<h1 class="guide-title">' + (filled(c.name) ? esc(c.name.trim()) : '<span class="guide-empty">' + esc(L.notEntered) + '</span>') + '</h1>' +
+      '</header>' +
+      (hasBody(b, lang) ? '' : '<div class="guide-nocontent">' + esc(L.noContent) + '</div>') +
+      SECTIONS.map(section).join('') +
+    '</article>';
+  }
+
+  /* ---------- Lightbox ---------- */
+  var lb = { photos: [], index: 0, caption: '', returnFocus: null };
+
+  function showLightboxPhoto() {
+    var n = lb.photos.length;
+    document.getElementById('lb-img').src = photos.urls[lb.photos[lb.index]];
+    document.getElementById('lb-img').alt = lb.caption;
+    document.getElementById('lb-count').textContent = n > 1 ? (lb.index + 1) + ' / ' + n : '';
+    document.getElementById('lb-caption').textContent = lb.caption;
+    document.getElementById('lb-prev').hidden = n < 2;
+    document.getElementById('lb-next').hidden = n < 2;
+  }
+
+  function openLightbox(photoIds, caption) {
+    lb.photos = photoIds;
+    lb.index = 0;
+    lb.caption = caption;
+    lb.returnFocus = document.activeElement;
+    showLightboxPhoto();
+    document.getElementById('lightbox').hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close').focus();
+  }
+
+  function closeLightbox() {
+    var box = document.getElementById('lightbox');
+    if (box.hidden) return;
+    box.hidden = true;
+    document.body.style.overflow = '';
+    if (lb.returnFocus && lb.returnFocus.focus) lb.returnFocus.focus();
+  }
+
+  function stepLightbox(d) {
+    var n = lb.photos.length;
+    if (n < 2) return;
+    lb.index = (lb.index + d + n) % n;
+    showLightboxPhoto();
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', function () { stepLightbox(-1); });
+  document.getElementById('lb-next').addEventListener('click', function () { stepLightbox(1); });
+  document.getElementById('lightbox').addEventListener('click', function (e) {
+    if (e.target === e.currentTarget) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (document.getElementById('lightbox').hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') stepLightbox(-1);
+    else if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+
+  /* ---------- Screens ---------- */
+  function renderList() {
+    var cards = BRANCH_IDS.map(function (id) {
+      var b = state.data[id];
+      var name = filled(b[state.lang].name) ? b[state.lang].name : defaultName(id, state.lang);
+      var ko = langStatus(b, 'ko'), en = langStatus(b, 'en');
+      return '<div class="card">' +
+        '<a class="card-main" href="#/view/' + id + '">' +
+          '<div class="card-no">' + esc(t('branchNo', { n: id })) + '</div>' +
+          '<div class="card-name">' + esc(name) + '</div>' +
+          '<div class="card-status">' +
+            '<span class="pill ' + ko.cls + '">KO ' + esc(ko.text) + '</span>' +
+            '<span class="pill ' + en.cls + '">EN ' + esc(en.text) + '</span>' +
+          '</div>' +
+        '</a>' +
+        '<div class="card-actions">' +
+          '<a class="btn" href="#/view/' + id + '">' + esc(t('view')) + '</a>' +
+          (state.viewOnly ? '' : '<a class="btn" href="#/edit/' + id + '">' + esc(t('edit')) + '</a>') +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    app().innerHTML = storageBanner() +
+      '<h1 class="page-title">' + esc(t('listTitle')) + '</h1>' +
+      '<p class="page-desc">' + esc(t('listDesc')) + '</p>' +
+      '<div class="cards">' + cards + '</div>' +
+      '<div class="switch-row">' +
+        '<p><strong>' + esc(t('viewOnlyTitle')) + '</strong>' + esc(t('viewOnlyDesc')) + '</p>' +
+        '<label class="switch"><input type="checkbox" id="viewonly-toggle" aria-label="' + esc(t('viewOnlyTitle')) + '"' +
+          (state.viewOnly ? ' checked' : '') + '><span></span></label>' +
+      '</div>';
+
+    document.getElementById('viewonly-toggle').addEventListener('change', function (e) {
+      state.viewOnly = e.target.checked;
+      storageSet(VIEWONLY_KEY, state.viewOnly ? '1' : '0');
+      render();
+    });
+  }
+
+  function renderView(id) {
+    app().innerHTML = storageBanner() +
+      '<div class="toolbar">' +
+        '<a class="btn" href="#/">' + esc(t('back')) + '</a>' +
+        '<span class="spacer"></span>' +
+        (state.viewOnly ? '' : '<a class="btn" href="#/edit/' + id + '">' + esc(t('edit')) + '</a>') +
+        '<button type="button" class="btn btn-primary" id="pdf-btn">' + esc(t(state.pdfBusy ? 'pdfMaking' : 'pdfShare')) + '</button>' +
+      '</div>' +
+      guideHTML(id, state.lang, false);
+
+    var btn = document.getElementById('pdf-btn');
+    btn.disabled = state.pdfBusy;
+    btn.addEventListener('click', function () { exportPdf(id); });
+
+    app().querySelectorAll('[data-ref]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var s = state.data[id].scenes[Number(el.getAttribute('data-ref'))];
+        openLightbox(s.photos.filter(function (p) { return photos.urls[p]; }), s[state.lang]);
+      });
+    });
+  }
+
+  function startDraft(id) {
+    state.draft = { id: id, tab: state.lang, content: clone(state.data[id]) };
+    state.dirty = false;
+  }
+
+  function markDirty() {
+    state.dirty = true;
+    var note = document.getElementById('dirty-note');
+    if (note) note.hidden = false;
+  }
+
+  function renderEdit(id, focusSel) {
+    if (!state.draft || state.draft.id !== id) startDraft(id);
+    var d = state.draft;
+
+    function scenesField(lang) {
+      var other = lang === 'ko' ? 'en' : 'ko';
+      var items = d.content.scenes.map(function (s, i) {
+        var ph = filled(s[other]) ? other.toUpperCase() + ': ' + s[other] : t('scenePh');
+        var thumbs = s.photos.map(function (p, j) {
+          var url = photos.urls[p];
+          return '<div class="thumb">' +
+            (url ? '<img src="' + url + '" alt="">' : '<span class="missing">' + esc(t('photoMissing')) + '</span>') +
+            '<button type="button" data-photo-del="' + i + ':' + j + '" aria-label="' + esc(t('removePhoto')) + '">✕</button></div>';
+        }).join('');
+        var add = photos.ok
+          ? '<label class="add-photo">' + esc(t('addPhoto')) +
+              '<input type="file" accept="image/*" multiple class="visually-hidden" data-photo-add="' + i + '"></label>'
+          : '';
+        return '<div class="scene-edit">' +
+          '<div class="scene-row">' +
+            '<span class="scene-num">' + (i + 1) + '</span>' +
+            '<input type="text" lang="' + lang + '" data-lang="' + lang + '" data-scene="' + i + '" id="sc-' + lang + '-' + i + '"' +
+              ' value="' + esc(s[lang]) + '" placeholder="' + esc(ph) + '" aria-label="' + esc(t('f_scenes')) + ' ' + (i + 1) + '" autocomplete="off">' +
+            '<button type="button" class="icon-btn" data-scene-del="' + i + '" aria-label="' + esc(t('removeScene')) + '">✕</button>' +
+          '</div>' +
+          (thumbs || add ? '<div class="thumbs">' + thumbs + add + '</div>' : '') +
+        '</div>';
+      }).join('');
+      return '<div class="field">' +
+        '<span class="field-label">' + esc(t('f_scenes')) + '<span class="hint">(' + esc(t('scenesHint')) + ')</span></span>' +
+        (photos.ok ? '' : '<div class="banner">' + esc(t('photoUnavailable')) + '</div>') +
+        items +
+        '<button type="button" class="btn btn-add-scene" data-scene-add="' + lang + '">' + esc(t('addScene')) + '</button>' +
+      '</div>';
+    }
+
+    function form(lang) {
+      var c = d.content[lang];
+      var fields = ['name'].concat(SECTIONS).map(function (f) {
+        if (f === 'scenes') return scenesField(lang);
+        var fid = 'f-' + lang + '-' + f;
+        var hint = LIST_FIELDS.indexOf(f) >= 0 ? t('perLine') : f === 'links' ? t('linksHint') : '';
+        var label = '<label for="' + fid + '">' + esc(t('f_' + f)) +
+          (hint ? '<span class="hint">(' + esc(hint) + ')</span>' : '') + '</label>';
+        var attrs = ' id="' + fid + '" data-lang="' + lang + '" data-field="' + f + '" lang="' + lang + '"';
+        var input = f === 'name'
+          ? '<input type="text"' + attrs + ' value="' + esc(c[f]) + '" autocomplete="off">'
+          : '<textarea' + attrs + ' rows="' + (f === 'address' ? 2 : f === 'links' ? 3 : 5) + '"' +
+              (f === 'links' ? ' placeholder="https://"' : '') + '>' + esc(c[f]) + '</textarea>';
+        return '<div class="field' + (f === 'banned' ? ' danger' : '') + '">' + label + input + '</div>';
+      }).join('');
+      return '<div class="form" role="tabpanel" id="panel-' + lang + '"' + (d.tab === lang ? '' : ' hidden') + '>' + fields + '</div>';
+    }
+
+    var scrollY = window.scrollY;
+    app().innerHTML = storageBanner() +
+      '<div class="toolbar">' +
+        '<a class="btn" href="#/">' + esc(t('back')) + '</a>' +
+        '<span class="spacer"></span>' +
+        '<a class="btn" href="#/view/' + id + '">' + esc(t('backToView')) + '</a>' +
+      '</div>' +
+      '<h1 class="page-title">' + esc(t('editTitle')) + ' · ' + esc(t('branchNo', { n: id })) + '</h1>' +
+      '<div class="tabs" role="tablist">' +
+        LANGS.map(function (lang) {
+          return '<button type="button" class="tab" role="tab" data-tab="' + lang + '" aria-controls="panel-' + lang + '"' +
+            ' aria-selected="' + (d.tab === lang) + '">' + esc(t(lang === 'ko' ? 'tabKo' : 'tabEn')) + '</button>';
+        }).join('') +
+      '</div>' +
+      form('ko') + form('en') +
+      '<div class="sticky-save">' +
+        '<span class="dirty-note" id="dirty-note"' + (state.dirty ? '' : ' hidden') + '>' + esc(t('unsaved')) + '</span>' +
+        '<button type="button" class="btn btn-primary" id="save-btn">' + esc(t('save')) + '</button>' +
+      '</div>';
+    if (focusSel !== undefined) window.scrollTo(0, scrollY);
+
+    app().querySelectorAll('.tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        d.tab = tab.getAttribute('data-tab');
+        app().querySelectorAll('.tab').forEach(function (x) {
+          x.setAttribute('aria-selected', String(x === tab));
+        });
+        document.getElementById('panel-ko').hidden = d.tab !== 'ko';
+        document.getElementById('panel-en').hidden = d.tab !== 'en';
+      });
+    });
+
+    app().querySelectorAll('[data-field]').forEach(function (el) {
+      el.addEventListener('input', function () {
+        d.content[el.getAttribute('data-lang')][el.getAttribute('data-field')] = el.value;
+        markDirty();
+      });
+    });
+
+    app().querySelectorAll('[data-scene]').forEach(function (el) {
+      el.addEventListener('input', function () {
+        d.content.scenes[Number(el.getAttribute('data-scene'))][el.getAttribute('data-lang')] = el.value;
+        markDirty();
+      });
+    });
+
+    app().querySelectorAll('[data-scene-add]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var lang = el.getAttribute('data-scene-add');
+        d.content.scenes.push({ id: newId('s'), ko: '', en: '', photos: [] });
+        markDirty();
+        renderEdit(id, 'keep');
+        var input = document.getElementById('sc-' + lang + '-' + (d.content.scenes.length - 1));
+        if (input) input.focus();
+      });
+    });
+
+    app().querySelectorAll('[data-scene-del]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var i = Number(el.getAttribute('data-scene-del'));
+        var s = d.content.scenes[i];
+        var empty = !filled(s.ko) && !filled(s.en) && !s.photos.length;
+        if (!empty && !window.confirm(t('confirmRemoveScene'))) return;
+        d.content.scenes.splice(i, 1);
+        markDirty();
+        renderEdit(id, 'keep');
+      });
+    });
+
+    app().querySelectorAll('[data-photo-del]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var parts = el.getAttribute('data-photo-del').split(':');
+        d.content.scenes[Number(parts[0])].photos.splice(Number(parts[1]), 1);
+        markDirty();
+        renderEdit(id, 'keep');
+      });
+    });
+
+    app().querySelectorAll('[data-photo-add]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        var scene = d.content.scenes[Number(el.getAttribute('data-photo-add'))];
+        var files = Array.prototype.slice.call(el.files || []);
+        if (!files.length) return;
+        toast(t('photoProcessing'), 60000);
+        var chain = Promise.resolve();
+        var failed = false;
+        files.forEach(function (file) {
+          chain = chain.then(function () {
+            return storePhoto(file).then(function (pid) {
+              scene.photos.push(pid);
+            }, function (err) {
+              failed = true;
+              toast(err && err.message === 'decode' ? t('photoReadError', { name: file.name }) : t('photoError'), 5000);
+            });
+          });
+        });
+        chain.then(function () {
+          markDirty();
+          if (state.draft === d) renderEdit(id, 'keep');
+          if (!failed) document.getElementById('toast').hidden = true;
+        });
+      });
+    });
+
+    document.getElementById('save-btn').addEventListener('click', save);
+  }
+
+  function save() {
+    var d = state.draft;
+    if (!d) return;
+    var next = clone(state.data);
+    next[d.id] = clone(d.content);
+    if (storageSet(STORE_KEY, JSON.stringify(next))) {
+      state.data = next;
+      state.dirty = false;
+      document.getElementById('dirty-note').hidden = true;
+      toast(t('saved'));
+    } else {
+      // Keep the edits in memory so the user does not lose them.
+      state.data = next;
+      toast(t('saveError'), 5000);
+      render();
+    }
+  }
+
+  function renderNotFound() {
+    app().innerHTML = '<p>' + esc(t('notFound')) + '</p><a class="btn" href="#/">' + esc(t('back')) + '</a>';
+  }
+
+  /* ---------- PDF export ---------- */
+  function pdfFileName(id, lang) {
+    var name = state.data[id][lang].name.trim() || defaultName(id, lang);
+    return name.replace(/[\\/:*?"<>|]+/g, ' ').replace(/\s+/g, '_') + '_' + lang.toUpperCase() + '.pdf';
+  }
+
+  function buildSheet(id, lang) {
+    var sheet = document.createElement('div');
+    sheet.className = 'pdf-sheet';
+    sheet.setAttribute('lang', lang);
+    sheet.innerHTML = guideHTML(id, lang, true) + '<div class="pdf-foot">' + esc(I18N[lang].pdfFoot) + '</div>';
+    return sheet;
+  }
+
+  function setPdfBusy(busy) {
+    state.pdfBusy = busy;
+    var btn = document.getElementById('pdf-btn');
+    if (btn) { btn.disabled = busy; btn.textContent = t(busy ? 'pdfMaking' : 'pdfShare'); }
+  }
+
+  function isMobile() {
+    return window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  }
+
+  function downloadBlob(blob, fileName) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+  }
+
+  function exportPdf(id) {
+    if (state.pdfBusy) return;
+    var lang = state.lang;
+    var fileName = pdfFileName(id, lang);
+
+    if (typeof window.html2pdf !== 'function') { printFallback(id, lang); return; }
+
+    setPdfBusy(true);
+    var opts = {
+      margin: [12, 12, 14, 12],
+      filename: fileName,
+      image: { type: 'jpeg', quality: 0.92 },
+      enableLinks: true,
+      html2canvas: { scale: 2, useCORS: true, scrollX: 0, scrollY: 0, backgroundColor: '#ffffff' },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'], avoid: ['li', '.guide-section h2', '.guide-head', '.guide-nocontent', '.ref-links'] }
+    };
+
+    var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    fontsReady
+      .then(function () { return window.html2pdf().set(opts).from(buildSheet(id, lang)).outputPdf('blob'); })
+      .then(function (blob) {
+        var file = null;
+        try { file = new File([blob], fileName, { type: 'application/pdf' }); } catch (e) { /* old browsers */ }
+        if (file && isMobile() && navigator.canShare && navigator.canShare({ files: [file] })) {
+          return navigator.share({ files: [file], title: fileName }).catch(function (err) {
+            if (err && err.name === 'AbortError') return; // user closed the share sheet
+            downloadBlob(blob, fileName);
+            toast(t('pdfSaved'));
+          });
+        }
+        downloadBlob(blob, fileName);
+        toast(t('pdfSaved'));
+      })
+      .catch(function () { printFallback(id, lang); })
+      .then(function () { setPdfBusy(false); });
+  }
+
+  // Used when the PDF library cannot load (e.g. offline): browser "Save as PDF".
+  function printFallback(id, lang) {
+    var root = document.getElementById('print-root');
+    root.innerHTML = '';
+    root.appendChild(buildSheet(id, lang));
+    var prevTitle = document.title;
+    document.title = pdfFileName(id, lang).replace(/\.pdf$/, '');
+    document.body.classList.add('printing');
+    toast(t('pdfFallback'), 5000);
+    var done = function () {
+      document.body.classList.remove('printing');
+      document.title = prevTitle;
+      root.innerHTML = '';
+      window.removeEventListener('afterprint', done);
+    };
+    window.addEventListener('afterprint', done);
+    setTimeout(function () { window.print(); }, 50);
+  }
+
+  /* ---------- Router ---------- */
+  function app() { return document.getElementById('app'); }
+
+  function parseHash() {
+    var m = location.hash.match(/^#\/(view|edit)\/(\w+)$/);
+    if (m) return { screen: m[1], id: m[2] };
+    return { screen: 'list' };
+  }
+
+  function render() {
+    renderShell();
+    var route = parseHash();
+    if (route.screen !== 'list' && BRANCH_IDS.indexOf(route.id) < 0) { renderNotFound(); return; }
+    if (route.screen === 'edit' && state.viewOnly) { location.replace('#/view/' + route.id); return; }
+    if (route.screen !== 'edit') state.draft = null;
+    if (route.screen === 'list') renderList();
+    else if (route.screen === 'view') renderView(route.id);
+    else renderEdit(route.id);
+  }
+
+  function isEditingHash(hash) { return /^#\/edit\//.test(hash || ''); }
+
+  window.addEventListener('hashchange', function () {
+    var prev = state.currentHash;
+    if (state.dirty && isEditingHash(prev) && location.hash !== prev) {
+      if (!window.confirm(t('confirmLeave'))) {
+        history.replaceState(null, '', prev);
+        return;
+      }
+      state.dirty = false;
+    }
+    closeLightbox();
+    state.currentHash = location.hash;
+    window.scrollTo(0, 0);
+    render();
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+    if (state.dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    state.lang = state.lang === 'ko' ? 'en' : 'ko';
+    storageSet(LANG_KEY, state.lang);
+    closeLightbox();
+    render(); // the editor re-renders from the in-memory draft, so unsaved input is kept
+  });
+
+  // First run: probe storage so the banner appears even before the first save.
+  (function probeStorage() {
+    try {
+      var k = '__wolhwa_probe__';
+      window.localStorage.setItem(k, '1');
+      window.localStorage.removeItem(k);
+    } catch (e) { storageOk = false; }
+  })();
+
+  state.currentHash = location.hash;
+  render();
+  // Photos load asynchronously; re-render once they are available.
+  initPhotos().then(function (changed) {
+    if (changed) {
+      if (isEditingHash(location.hash) && state.draft) renderEdit(state.draft.id, 'keep');
+      else render();
+    }
+  });
+})();
+</script>
+</body>
+</html>
